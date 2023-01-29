@@ -11,6 +11,7 @@ project(sqlite3pp)
 
 set(CMAKE_CXX_STANDARD 11)
 set(SQLITE_ENABLE_COLUMN_METADATA 1)
+set(CMAKE_OSX_ARCHITECTURES "x86_64;i386")
 
 add_library(sqlite3
  sqlite3.c
@@ -23,6 +24,7 @@ set_target_properties(sqlite3
         PROPERTIES
         PUBLIC_HEADER sqlite3.h
         )
+set_target_properties(sqlite3 PROPERTIES LINKER_LANGUAGE CXX)
 
 target_compile_definitions(sqlite3 PUBLIC HAVE_USLEEP=1 SQLITE_HAVE_ISNAN SQLITE_DEFAULT_JOURNAL_SIZE_LIMIT=1048576
         SQLITE_THREADSAFE=2 SQLITE_TEMP_STORE=3 SQLITE_POWERSAFE_OVERWRITE=1 SQLITE_DEFAULT_FILE_FORMAT=4

@@ -1,0 +1,24 @@
+cmake_minimum_required(VERSION 3.22.1)
+project(sqlite3pp)
+
+set(CMAKE_CXX_STANDARD 11)
+set(CMAKE_IGNORE_PREFIX_PATH "usr/include/sqlite3.h")
+set(CMAKE_OSX_ARCHITECTURES "x86_64;i386")
+
+add_subdirectory(sqlite3)
+#find_package(sqlite3)
+add_library(sqlite3pp sqlite3
+ headeronly_src/sqlite3pp.h
+ headeronly_src/sqlite3pp.ipp
+)
+
+set_target_properties(sqlite3pp PROPERTIES LINKER_LANGUAGE CXX)
+#target_link_libraries(sqlite3pp sqlite3)
+#target_include_directories(sqlite3pp SYSTEM BEFORE PRIVATE sqlite3/sqlite3.h )
+#target_include_directories(sqlite3pp PUBLIC headeronly_src/sqlite3pp.h)
+#set_target_properties(sqlite3pp sqlite3
+#        PROPERTIES
+#        PUBLIC_HEADER sqlite3/sqlite3.h
+#        )
+
+
